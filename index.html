@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +10,14 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #f9a8d4 100%);
             min-height: 100vh;
             padding: 20px;
         }
-
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -27,29 +26,29 @@
             box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15);
             overflow: hidden;
         }
-
+        
         .header {
             background: linear-gradient(135deg, #e879f9 0%, #c084fc 50%, #a855f7 100%);
             color: white;
             padding: 30px;
             text-align: center;
         }
-
+        
         .header h1 {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 10px;
         }
-
+        
         .header p {
             font-size: 1.1rem;
             opacity: 0.95;
         }
-
+        
         .form-container {
             padding: 40px;
         }
-
+        
         .shop-info-section {
             background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
             border-radius: 15px;
@@ -57,27 +56,27 @@
             margin-bottom: 40px;
             border: 2px solid #f3e8ff;
         }
-
+        
         .shop-info-section h2 {
             color: #7c3aed;
             font-size: 1.5rem;
             margin-bottom: 20px;
             text-align: center;
         }
-
+        
         .shop-info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-
+        
         @media (max-width: 768px) {
             .shop-info-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
         }
-
+        
         .product-card {
             background: #fdf2f8;
             border-radius: 15px;
@@ -86,7 +85,7 @@
             border: 2px solid #fce4ec;
             position: relative;
         }
-
+        
         .product-number {
             position: absolute;
             top: -15px;
@@ -98,24 +97,24 @@
             font-weight: 600;
             font-size: 0.9rem;
         }
-
+        
         .form-group {
             margin-bottom: 25px;
         }
-
+        
         .label-with-help {
             display: flex;
             align-items: center;
             gap: 8px;
             margin-bottom: 8px;
         }
-
+        
         label {
             font-weight: 600;
             color: #333;
             font-size: 1rem;
         }
-
+        
         .help-icon {
             width: 16px;
             height: 16px;
@@ -131,17 +130,17 @@
             position: relative;
             transition: all 0.3s ease;
         }
-
+        
         .help-icon:hover {
             background: #7c3aed;
             transform: scale(1.1);
         }
-
+        
         .help-icon:focus {
             outline: 2px solid #a855f7;
             outline-offset: 2px;
         }
-
+        
         .help-tooltip {
             position: absolute;
             top: -5px;
@@ -158,7 +157,7 @@
             max-width: 250px;
             white-space: normal;
         }
-
+        
         .help-tooltip::before {
             content: '';
             position: absolute;
@@ -168,26 +167,22 @@
             border: 5px solid transparent;
             border-right-color: #333;
         }
-
+        
         .help-icon:hover .help-tooltip {
             display: block;
         }
-
+        
         .required {
             color: #a855f7;
         }
-
+        
         .optional {
             color: #888;
             font-weight: 400;
             font-size: 0.9rem;
         }
-
-        input[type="text"],
-        input[type="url"],
-        input[type="number"],
-        textarea,
-        select {
+        
+        input[type="text"], input[type="url"], input[type="number"], textarea, select {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #fce4ec;
@@ -196,26 +191,24 @@
             transition: all 0.3s ease;
             background: white;
         }
-
-        input:focus,
-        textarea:focus,
-        select:focus {
+        
+        input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: #a855f7;
             box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
         }
-
+        
         textarea {
             min-height: 100px;
             resize: vertical;
         }
-
+        
         .radio-group {
             display: flex;
             gap: 20px;
             margin-top: 8px;
         }
-
+        
         .radio-option {
             display: flex;
             align-items: center;
@@ -226,22 +219,22 @@
             border-radius: 10px;
             transition: all 0.3s ease;
         }
-
+        
         .radio-option:hover {
             border-color: #a855f7;
             background: #fdf2f8;
         }
-
+        
         .radio-option.selected {
             border-color: #a855f7;
             background: #fce7f3;
         }
-
+        
         .radio-option input[type="radio"] {
             width: auto;
             margin: 0;
         }
-
+        
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -252,11 +245,11 @@
             border-radius: 10px;
             border: 1px solid #fce4ec;
         }
-
+        
         .checkbox-group input[type="checkbox"] {
             width: auto;
         }
-
+        
         .ai-description {
             background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
             color: white;
@@ -265,7 +258,7 @@
             margin-top: 10px;
             font-size: 0.9rem;
         }
-
+        
         .file-upload-area {
             border: 2px dashed #a855f7;
             border-radius: 10px;
@@ -275,29 +268,29 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
+        
         .file-upload-area:hover {
             background: #fce7f3;
             border-color: #7c3aed;
         }
-
+        
         .file-upload-area.dragover {
             background: #fce7f3;
             border-color: #7c3aed;
         }
-
+        
         .file-upload-text {
             font-size: 1rem;
             color: #a855f7;
             font-weight: 600;
             margin-bottom: 5px;
         }
-
+        
         .file-upload-subtext {
             font-size: 0.9rem;
             color: #888;
         }
-
+        
         .quality-warning {
             background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
             color: white;
@@ -309,11 +302,11 @@
             align-items: center;
             gap: 8px;
         }
-
+        
         .uploaded-images {
             margin-top: 15px;
         }
-
+        
         .image-summary {
             display: flex;
             align-items: center;
@@ -324,7 +317,7 @@
             border: 1px solid #e0e0e0;
             margin-bottom: 8px;
         }
-
+        
         .image-preview {
             width: 50px;
             height: 50px;
@@ -332,45 +325,34 @@
             border-radius: 6px;
             border: 1px solid #e0e0e0;
         }
-
+        
         .image-info {
             flex: 1;
         }
-
+        
         .image-name {
             font-weight: 600;
             color: #333;
             font-size: 0.9rem;
         }
-
+        
         .image-details {
             font-size: 0.8rem;
             color: #666;
             margin-top: 2px;
         }
-
+        
         .quality-badge {
             padding: 4px 8px;
             border-radius: 4px;
             font-size: 0.75rem;
             font-weight: 600;
         }
-
-        .quality-excellent {
-            background: #e8f5e8;
-            color: #2e7d2e;
-        }
-
-        .quality-good {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .quality-poor {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
+        
+        .quality-excellent { background: #e8f5e8; color: #2e7d2e; }
+        .quality-good { background: #fff3cd; color: #856404; }
+        .quality-poor { background: #f8d7da; color: #721c24; }
+        
         .stock-section {
             background: white;
             border-radius: 10px;
@@ -378,7 +360,74 @@
             margin-top: 15px;
             border: 2px solid #fce4ec;
         }
-
+        
+        .variant-warning {
+            background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .variants-count {
+            font-weight: 600;
+            color: #a855f7;
+        }
+        
+        .variant-total-warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .image-selector {
+            margin-top: 15px;
+        }
+        
+        .image-selector label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .image-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .image-option {
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .image-option:hover {
+            border-color: #a855f7;
+        }
+        
+        .image-option.selected {
+            border-color: #a855f7;
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
+        }
+        
+        .image-option img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+        
         .variants-section {
             margin-top: 30px;
             padding: 25px;
@@ -386,19 +435,149 @@
             border-radius: 15px;
             border: 2px solid #fce4ec;
         }
-
+        
+        .variant-warning {
+            background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .variants-count {
+            font-weight: 600;
+            color: #a855f7;
+        }
+        
+        .variant-total-warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .image-selector {
+            margin-top: 15px;
+        }
+        
+        .image-selector label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .image-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .image-option {
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .image-option:hover {
+            border-color: #a855f7;
+        }
+        
+        .image-option.selected {
+            border-color: #a855f7;
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
+        }
+        
+        .image-option img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+        
+        .image-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
         .variants-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-
+        
         .variants-header h3 {
             color: #333;
             font-size: 1.3rem;
         }
-
+        
+        .variant-values-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .variant-value-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+        }
+        
+        .variant-value-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .variant-value-input:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.1);
+            outline: none;
+        }
+        
+        .variant-value-remove {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .variant-value-remove:hover {
+            background: #c0392b;
+        }
+        
+        .add-variant-value {
+            background: transparent;
+            border: 2px dashed #a855f7;
+            color: #a855f7;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+        
         .variant-option {
             background: #fdf2f8;
             border-radius: 10px;
@@ -406,19 +585,86 @@
             margin-bottom: 15px;
             border: 1px solid #fce4ec;
         }
-
+        
+        .variant-values-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .variant-value-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+        }
+        
+        .variant-value-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .variant-value-input:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.1);
+            outline: none;
+        }
+        
+        .variant-value-input.empty {
+            border-style: dashed;
+            border-color: #ccc;
+            color: #999;
+            font-style: italic;
+        }
+        
+        .variant-value-remove {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .variant-value-remove:hover {
+            background: #c0392b;
+        }
+        
+        .add-variant-value {
+            background: transparent;
+            border: 2px dashed #a855f7;
+            color: #a855f7;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+        
+        .add-variant-value:hover {
+            background: #fdf2f8;
+            border-color: #7c3aed;
+        }
+        
         .variant-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
-
+        
         .variant-title {
             font-weight: 600;
             color: #333;
         }
-
+        
         .btn {
             padding: 12px 24px;
             border: none;
@@ -428,48 +674,48 @@
             transition: all 0.3s ease;
             font-size: 1rem;
         }
-
+        
         .btn-primary {
             background: #a855f7;
             color: white;
         }
-
+        
         .btn-primary:hover {
             background: #7c3aed;
             transform: translateY(-2px);
         }
-
+        
         .btn-secondary {
             background: #c084fc;
             color: white;
         }
-
+        
         .btn-secondary:hover {
             background: #a855f7;
         }
-
+        
         .btn-danger {
             background: #e74c3c;
             color: white;
             padding: 6px 12px;
             font-size: 0.8rem;
         }
-
+        
         .btn-danger:hover {
             background: #c0392b;
         }
-
+        
         .btn-outline {
             background: transparent;
             border: 2px solid #a855f7;
             color: #a855f7;
         }
-
+        
         .btn-outline:hover {
             background: #a855f7;
             color: white;
         }
-
+        
         .actions {
             display: flex;
             gap: 15px;
@@ -478,19 +724,19 @@
             padding-top: 30px;
             border-top: 2px solid #fce4ec;
         }
-
+        
         .export-section {
             background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
             color: white;
             padding: 30px;
             text-align: center;
         }
-
+        
         .product-count {
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-
+        
         .success-message {
             background: #d4edda;
             color: #155724;
@@ -500,29 +746,29 @@
             border: 1px solid #c3e6cb;
             display: none;
         }
-
+        
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
                 border-radius: 15px;
             }
-
+            
             .form-container {
                 padding: 20px;
             }
-
+            
             .header {
                 padding: 20px;
             }
-
+            
             .header h1 {
                 font-size: 2rem;
             }
-
+            
             .actions {
                 flex-direction: column;
             }
-
+            
             .radio-group {
                 flex-direction: column;
                 gap: 10px;
@@ -530,19 +776,18 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="header">
             <h1>🛍️ Collecte Produits Shopify</h1>
             <p>Remplis simplement les infos, je créerai ton catalogue ensuite !</p>
         </div>
-
+        
         <div class="form-container">
             <div class="success-message" id="success-message">
                 ✅ Tes produits ont été envoyés avec succès ! Je vais maintenant créer ton catalogue Shopify.
             </div>
-
+            
             <!-- Section informations boutique -->
             <div class="shop-info-section">
                 <h2>📋 Informations de ta boutique</h2>
@@ -550,15 +795,13 @@
                     <div class="form-group">
                         <div class="label-with-help">
                             <label for="shop-name">Nom de ma boutique <span class="required">*</span></label>
-                            <div class="help-icon" tabindex="0" role="button" aria-label="Aide pour le nom de boutique">
-                                ?
-                                <div class="help-tooltip">Le nom officiel de ta boutique qui apparaîtra sur Shopify
-                                </div>
+                            <div class="help-icon" tabindex="0" role="button" aria-label="Aide pour le nom de boutique">?
+                                <div class="help-tooltip">Le nom officiel de ta boutique qui apparaîtra sur Shopify</div>
                             </div>
                         </div>
                         <input type="text" id="shop-name" name="shop-name" required placeholder="Ma Belle Boutique">
                     </div>
-
+                    
                     <div class="form-group">
                         <div class="label-with-help">
                             <label for="shop-email">Email de contact <span class="required">*</span></label>
@@ -566,16 +809,15 @@
                                 <div class="help-tooltip">Ton email principal pour que je puisse te contacter</div>
                             </div>
                         </div>
-                        <input type="email" id="shop-email" name="shop-email" required
-                            placeholder="contact@maboutique.com">
+                        <input type="email" id="shop-email" name="shop-email" required placeholder="contact@maboutique.com">
                     </div>
                 </div>
             </div>
-
+            
             <div id="products-container">
                 <!-- Les produits seront ajoutés ici -->
             </div>
-
+            
             <div class="actions">
                 <button type="button" class="btn btn-outline" onclick="addProduct()">
                     ➕ Ajouter un produit
@@ -585,7 +827,7 @@
                 </button>
             </div>
         </div>
-
+        
         <div class="export-section">
             <div class="product-count">
                 <span id="product-count">0</span> produit(s) ajouté(s)
@@ -594,6 +836,12 @@
         </div>
     </div>
 
+    <!-- Formulaire caché pour Google Sheets (évite CORS) -->
+    <form id="gsheet-form" method="POST" action="https://script.google.com/macros/s/AKfycbzVnoHVNEVRupPBbCc9p2ZqBKC96bM3r73diRLxbAsPwf55mBRWQIqBnQlNhDP92fsQ5Q/exec" target="invisible-frame" style="display:none;">
+        <input type="hidden" name="data" id="gsheet-data">
+    </form>
+    <iframe name="invisible-frame" style="display:none;"></iframe>
+
     <script>
         let productCount = 0;
         let products = [];
@@ -601,7 +849,7 @@
         function createProductForm() {
             productCount++;
             const productId = `product-${productCount}`;
-
+            
             return `
                 <div class="product-card" id="${productId}">
                     <div class="product-number">Produit ${productCount}</div>
@@ -719,12 +967,18 @@
                         <div class="variants-header">
                             <div>
                                 <h3>🎨 Variantes</h3>
-                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">Couleurs, tailles, options...</div>
+                                <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">
+                                    Couleurs, tailles, options... 
+                                    <span class="variants-count" id="variants-count-${productCount}">(0/3 options)</span>
+                                </div>
                             </div>
-                            <button type="button" class="btn btn-secondary" onclick="addVariantOption(${productCount})">+ Ajouter option</button>
+                            <button type="button" class="btn btn-secondary" onclick="addVariantOption(${productCount})" id="add-variant-btn-${productCount}">+ Ajouter option</button>
                         </div>
                         <div id="variants-${productCount}">
                             <!-- Les variantes seront ajoutées ici -->
+                        </div>
+                        <div id="variant-warning-${productCount}" class="variant-warning" style="display: none;">
+                            ⚠️ <strong>Limite Shopify atteinte :</strong> Tu as atteint une limite de Shopify. Tu peux créer un produit séparé pour ajouter d'autres variantes.
                         </div>
                     </div>
                 </div>
@@ -741,7 +995,7 @@
                     option.classList.add('selected');
                 }
             });
-
+            
             // Afficher/masquer la section stock
             const stockSection = document.getElementById(`stock-section-${productId}`);
             if (type === 'physical') {
@@ -783,28 +1037,28 @@
 
         function processImages(files, productId) {
             const container = document.getElementById(`uploaded-images-${productId}`);
-
+            
             files.forEach((file, index) => {
                 // Vérifier la taille du fichier
                 if (file.size > 5 * 1024 * 1024) {
                     alert(`L'image ${file.name} est trop lourde (max 5MB)`);
                     return;
                 }
-
+                
                 const reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     const img = new Image();
-                    img.onload = function () {
+                    img.onload = function() {
                         const quality = getImageQuality(this.width, this.height);
                         const size = formatFileSize(file.size);
                         const resolution = `${this.width}x${this.height}`;
-
+                        
                         // Rejeter si trop mauvaise qualité
                         if (quality.level === 'poor' && (this.width < 500 || this.height < 500)) {
                             alert(`L'image ${file.name} est de trop mauvaise qualité (${resolution}). Minimum 500px recommandé.`);
                             return;
                         }
-
+                        
                         const imageHtml = `
                             <div class="image-summary">
                                 <img src="${e.target.result}" alt="Preview" class="image-preview">
@@ -812,14 +1066,56 @@
                                     <div class="image-name">${file.name}</div>
                                     <div class="image-details">${resolution} - ${size} - <span class="quality-badge quality-${quality.level}">${quality.text}</span></div>
                                 </div>
-                                <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()">×</button>
+                                <button type="button" class="btn btn-danger" onclick="removeImage(this, ${productId})">×</button>
                             </div>
                         `;
                         container.insertAdjacentHTML('beforeend', imageHtml);
+                        
+                        // Mettre à jour les sélecteurs d'images dans les variantes existantes
+                        updateVariantImageSelectors(productId);
                     };
                     img.src = e.target.result;
                 };
                 reader.readAsDataURL(file);
+            });
+        }
+
+        function removeImage(button, productId) {
+            button.parentElement.remove();
+            updateVariantImageSelectors(productId);
+        }
+
+        function updateVariantImageSelectors(productId) {
+            const variantOptions = document.querySelectorAll(`#variants-${productId} .variant-option`);
+            const productImages = document.querySelectorAll(`#uploaded-images-${productId} .image-summary`);
+            
+            variantOptions.forEach(option => {
+                const imageSelector = option.querySelector('.image-selector');
+                if (imageSelector) {
+                    const imageOptions = imageSelector.querySelector('.image-options');
+                    const currentSelected = imageSelector.querySelector('input[type="radio"]:checked')?.value || '';
+                    
+                    // Reconstruire les options d'images
+                    imageOptions.innerHTML = `
+                        <div class="image-option ${currentSelected === '' ? 'selected' : ''}">
+                            <input type="radio" name="${imageSelector.querySelector('input').name}" value="" ${currentSelected === '' ? 'checked' : ''}>
+                            <div style="width: 50px; height: 50px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #666;">Aucune</div>
+                        </div>
+                    `;
+                    
+                    productImages.forEach((imgElement, index) => {
+                        const imgSrc = imgElement.querySelector('.image-preview').src;
+                        const imgName = imgElement.querySelector('.image-name').textContent;
+                        const isSelected = currentSelected === index.toString();
+                        
+                        imageOptions.innerHTML += `
+                            <div class="image-option ${isSelected ? 'selected' : ''}" onclick="selectVariantImage(this)">
+                                <input type="radio" name="${imageSelector.querySelector('input').name}" value="${index}" ${isSelected ? 'checked' : ''}>
+                                <img src="${imgSrc}" alt="${imgName}" title="${imgName}">
+                            </div>
+                        `;
+                    });
+                }
             });
         }
 
@@ -846,13 +1142,15 @@
             const container = document.getElementById('products-container');
             container.insertAdjacentHTML('beforeend', createProductForm());
             updateProductCount();
-
+            
             // Ajouter l'event listener pour la checkbox IA
             const checkbox = document.getElementById(`ai-description-${productCount}`);
             const aiInfo = document.getElementById(`ai-info-${productCount}`);
-            checkbox.addEventListener('change', function () {
-                aiInfo.style.display = this.checked ? 'block' : 'none';
-            });
+            if (checkbox && aiInfo) {
+                checkbox.addEventListener('change', function() {
+                    aiInfo.style.display = this.checked ? 'block' : 'none';
+                });
+            }
         }
 
         function removeProduct(productId) {
@@ -861,38 +1159,244 @@
         }
 
         function addVariantOption(productId) {
-            const variantCount = document.querySelectorAll(`#variants-${productId} .variant-option`).length + 1;
+            const variantsContainer = document.getElementById(`variants-${productId}`);
+            const currentVariants = variantsContainer.querySelectorAll('.variant-option').length;
+            
+            // Vérifier la limite de 3 options
+            if (currentVariants >= 3) {
+                document.getElementById(`variant-warning-${productId}`).style.display = 'block';
+                return;
+            }
+            
+            const variantCount = currentVariants + 1;
+            const productImages = document.querySelectorAll(`#uploaded-images-${productId} .image-summary`);
+            
+            // Créer les options d'images si il y en a
+            let imageSelector = '';
+            if (productImages.length > 0) {
+                imageSelector = `
+                    <div class="image-selector">
+                        <label>Image pour cette variante <span class="optional">(facultatif)</span></label>
+                        <div class="image-options">
+                            <div class="image-option selected" onclick="selectVariantImage(this)">
+                                <input type="radio" name="variant-image-${productId}-${variantCount}" value="" checked>
+                                <div style="width: 50px; height: 50px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #666;">Aucune</div>
+                            </div>
+                `;
+                
+                productImages.forEach((imgElement, index) => {
+                    const imgSrc = imgElement.querySelector('.image-preview').src;
+                    const imgName = imgElement.querySelector('.image-name').textContent;
+                    imageSelector += `
+                        <div class="image-option" onclick="selectVariantImage(this)">
+                            <input type="radio" name="variant-image-${productId}-${variantCount}" value="${index}">
+                            <img src="${imgSrc}" alt="${imgName}" title="${imgName}">
+                        </div>
+                    `;
+                });
+                
+                imageSelector += `</div></div>`;
+            }
+            
             const variantHtml = `
                 <div class="variant-option" id="variant-${productId}-${variantCount}">
                     <div class="variant-header">
                         <div class="variant-title">Option ${variantCount}</div>
-                        <button type="button" class="btn btn-danger" onclick="removeVariantOption('variant-${productId}-${variantCount}')">Supprimer</button>
+                        <button type="button" class="btn btn-danger" onclick="removeVariantOption('variant-${productId}-${variantCount}', ${productId})">Supprimer</button>
                     </div>
                     <div class="form-group">
                         <div class="label-with-help">
                             <label>Nom de l'option</label>
-                            <div class="help-icon">?
+                            <div class="help-icon" tabindex="0" role="button" aria-label="Aide pour l'option">?
                                 <div class="help-tooltip">Ex: Couleur, Taille, Matière, Style...</div>
                             </div>
                         </div>
-                        <input type="text" name="variant-name" placeholder="Couleur" data-product="${productId}" data-variant="${variantCount}">
+                        <input type="text" name="variant-name" placeholder="Couleur" data-product="${productId}" data-variant="${variantCount}" onchange="updateVariantCounts(${productId})" oninput="updateVariantCounts(${productId})">
                     </div>
                     <div class="form-group">
                         <div class="label-with-help">
                             <label>Valeurs disponibles</label>
-                            <div class="help-icon">?
-                                <div class="help-tooltip">Sépare chaque option par une virgule. Ex: Rouge, Bleu, Vert</div>
+                            <div class="help-icon" tabindex="0" role="button" aria-label="Aide pour les valeurs">?
+                                <div class="help-tooltip">Ajoute tes valeurs une par une, comme sur Shopify</div>
                             </div>
                         </div>
-                        <input type="text" name="variant-values" placeholder="Rouge, Bleu, Vert" data-product="${productId}" data-variant="${variantCount}">
+                        <div class="variant-values-container" id="variant-values-${productId}-${variantCount}">
+                            <!-- Les valeurs seront ajoutées ici -->
+                        </div>
+                        <button type="button" class="add-variant-value" onclick="addVariantValue(${productId}, ${variantCount})">
+                            + Ajouter une valeur
+                        </button>
                     </div>
+                    ${imageSelector}
+                    <div id="variant-total-${productId}-${variantCount}" class="variant-total-warning" style="display: none;"></div>
                 </div>
             `;
-            document.getElementById(`variants-${productId}`).insertAdjacentHTML('beforeend', variantHtml);
+            
+            variantsContainer.insertAdjacentHTML('beforeend', variantHtml);
+            updateVariantCounts(productId);
         }
 
-        function removeVariantOption(variantId) {
+        function removeVariantOption(variantId, productId) {
             document.getElementById(variantId).remove();
+            updateVariantCounts(productId);
+            
+            // Masquer l'avertissement si on repasse sous la limite
+            const currentVariants = document.querySelectorAll(`#variants-${productId} .variant-option`).length;
+            if (currentVariants < 3) {
+                document.getElementById(`variant-warning-${productId}`).style.display = 'none';
+            }
+        }
+
+        function addVariantValue(productId, variantId) {
+            const container = document.getElementById(`variant-values-${productId}-${variantId}`);
+            const valueCount = container.children.length;
+            const valueId = `${productId}-${variantId}-${valueCount}`;
+            
+            const valueHtml = `
+                <div class="variant-value-item" id="variant-value-${valueId}">
+                    <input type="text" 
+                           class="variant-value-input" 
+                           placeholder="Ex: Rouge, M, Coton..." 
+                           data-product="${productId}" 
+                           data-variant="${variantId}"
+                           data-value="${valueCount}"
+                           oninput="handleVariantValueInput(this, ${productId}, ${variantId})"
+                           onblur="handleVariantValueBlur(this, ${productId}, ${variantId})">
+                    <button type="button" class="variant-value-remove" onclick="removeVariantValue('variant-value-${valueId}', ${productId})">×</button>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', valueHtml);
+            
+            // Focus sur le nouveau champ
+            const newInput = container.lastElementChild.querySelector('input');
+            newInput.focus();
+        }
+
+        function removeVariantValue(valueId, productId) {
+            const container = document.getElementById(valueId).parentElement;
+            document.getElementById(valueId).remove();
+            
+            // S'assurer qu'il y a toujours au moins un champ vide
+            if (container.children.length === 0) {
+                const productIdNum = productId;
+                const variantId = container.id.split('-')[2];
+                addVariantValue(productIdNum, variantId);
+            }
+            
+            updateVariantCounts(productId);
+        }
+
+        function handleVariantValueInput(input, productId, variantId) {
+            const container = input.closest('.variant-values-container');
+            const allInputs = container.querySelectorAll('.variant-value-input');
+            const emptyInputs = Array.from(allInputs).filter(inp => !inp.value.trim());
+            
+            // Si on tape dans un champ vide et qu'il n'y a plus d'autre champ vide, en créer un
+            if (input.value.trim() && emptyInputs.length === 0) {
+                addVariantValue(productId, variantId);
+            }
+            
+            // Mettre à jour le style
+            input.classList.toggle('empty', !input.value.trim());
+            
+            updateVariantCounts(productId);
+        }
+
+        function selectVariantImage(element) {
+            // Retirer la sélection des autres images
+            const container = element.closest('.image-options');
+            container.querySelectorAll('.image-option').forEach(opt => opt.classList.remove('selected'));
+            
+            // Sélectionner l'image cliquée
+            element.classList.add('selected');
+            element.querySelector('input[type="radio"]').checked = true;
+        }
+
+        function addVariantValue(productId, variantId) {
+            const container = document.getElementById(`variant-values-${productId}-${variantId}`);
+            const valueCount = container.children.length;
+            const valueId = `${productId}-${variantId}-${valueCount}`;
+            
+            const valueHtml = `
+                <div class="variant-value-item" id="variant-value-${valueId}">
+                    <input type="text" 
+                           class="variant-value-input" 
+                           placeholder="Ex: Rouge, M, Coton..." 
+                           data-product="${productId}" 
+                           data-variant="${variantId}"
+                           data-value="${valueCount}"
+                           oninput="updateVariantCounts(${productId})">
+                    <button type="button" class="variant-value-remove" onclick="removeVariantValue('variant-value-${valueId}', ${productId})">×</button>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', valueHtml);
+        }
+
+        function removeVariantValue(valueId, productId) {
+            document.getElementById(valueId).remove();
+            updateVariantCounts(productId);
+        }
+
+        function updateVariantCounts(productId) {
+            const variantOptions = document.querySelectorAll(`#variants-${productId} .variant-option`);
+            const currentCount = variantOptions.length;
+            
+            // Mettre à jour le compteur d'options
+            const countElement = document.getElementById(`variants-count-${productId}`);
+            if (countElement) {
+                countElement.textContent = `(${currentCount}/3 options)`;
+                countElement.style.color = currentCount >= 3 ? '#ff5722' : '#a855f7';
+            }
+            
+            // Désactiver le bouton si limite atteinte
+            const addBtn = document.getElementById(`add-variant-btn-${productId}`);
+            if (addBtn) {
+                addBtn.disabled = currentCount >= 3;
+                addBtn.style.opacity = currentCount >= 3 ? '0.5' : '1';
+            }
+            
+            // Calculer le total des combinaisons
+            let totalCombinations = 1;
+            let hasValues = false;
+            
+            variantOptions.forEach(option => {
+                const nameInput = option.querySelector('input[name="variant-name"]');
+                const valuesContainer = option.querySelector('.variant-values-container');
+                
+                if (nameInput && valuesContainer) {
+                    const name = nameInput.value.trim();
+                    const valueInputs = valuesContainer.querySelectorAll('.variant-value-input');
+                    const values = Array.from(valueInputs)
+                        .map(input => input.value.trim())
+                        .filter(value => value);
+                    
+                    if (name && values.length > 0) {
+                        totalCombinations *= values.length;
+                        hasValues = true;
+                    }
+                }
+            });
+            
+            // Afficher l'avertissement si > 100 combinaisons
+            if (hasValues && totalCombinations > 100) {
+                variantOptions.forEach((option, index) => {
+                    const warningElement = option.querySelector(`[id^="variant-total-"]`);
+                    if (warningElement) {
+                        warningElement.style.display = 'block';
+                        warningElement.innerHTML = `⚠️ <strong>Attention :</strong> ${totalCombinations} combinaisons au total. Shopify limite à 100 max. Tu peux diviser en plusieurs produits ou réduire les options.`;
+                    }
+                });
+            } else {
+                // Masquer tous les avertissements
+                variantOptions.forEach(option => {
+                    const warningElement = option.querySelector(`[id^="variant-total-"]`);
+                    if (warningElement) {
+                        warningElement.style.display = 'none';
+                    }
+                });
+            }
         }
 
         function updateProductCount() {
@@ -903,45 +1407,53 @@
         function collectFormData() {
             const products = [];
             const productCards = document.querySelectorAll('.product-card');
-
+            
             productCards.forEach((card) => {
-                const productNum = card.id.split('-')[1];
-                const title = document.getElementById(`title-${productNum}`).value;
-                const productType = document.querySelector(`input[name="product-type-${productNum}"]:checked`)?.value;
-                const description = document.getElementById(`description-${productNum}`).value;
-                const aiDescription = document.getElementById(`ai-description-${productNum}`).checked;
-                const price = document.getElementById(`price-${productNum}`).value;
-                const trackStock = document.getElementById(`track-stock-${productNum}`).checked;
-                const stock = document.getElementById(`stock-${productNum}`).value;
-                const notes = document.getElementById(`notes-${productNum}`).value;
-
+                const productId = card.id.split('-')[1];
+                const title = document.getElementById(`title-${productId}`)?.value || '';
+                const productType = document.querySelector(`input[name="product-type-${productId}"]:checked`)?.value || '';
+                const description = document.getElementById(`description-${productId}`)?.value || '';
+                const aiDescription = document.getElementById(`ai-description-${productId}`)?.checked || false;
+                const price = document.getElementById(`price-${productId}`)?.value || '';
+                const trackStock = document.getElementById(`track-stock-${productId}`)?.checked || false;
+                const stock = document.getElementById(`stock-${productId}`)?.value || '';
+                const notes = document.getElementById(`notes-${productId}`)?.value || '';
+                
                 // Collecter les images
                 const images = [];
                 const imageElements = card.querySelectorAll('.image-summary');
                 imageElements.forEach(imgElement => {
-                    const imgName = imgElement.querySelector('.image-name').textContent;
-                    const imgDetails = imgElement.querySelector('.image-details').textContent;
-                    const encodedName = encodeURIComponent(imgName);
-                    const imgUrl = `https://import.designbykiara.com/img/${encodedName}`;
-
-                    images.push({ name: imgName, url: imgUrl, details: imgDetails });
-
+                    const imgName = imgElement.querySelector('.image-name')?.textContent || '';
+                    const imgDetails = imgElement.querySelector('.image-details')?.textContent || '';
+                    const imgSrc = imgElement.querySelector('.image-preview')?.src || '';
+                    images.push({ name: imgName, details: imgDetails, src: imgSrc });
                 });
-
+                
                 // Collecter les variantes
                 const variants = [];
                 const variantOptions = card.querySelectorAll('.variant-option');
                 variantOptions.forEach(option => {
-                    const name = option.querySelector('input[name="variant-name"]').value;
-                    const values = option.querySelector('input[name="variant-values"]').value;
-                    if (name && values) {
-                        variants.push({
-                            name: name.trim(),
-                            values: values.split(',').map(v => v.trim()).filter(v => v)
-                        });
+                    const nameInput = option.querySelector('input[name="variant-name"]');
+                    const valuesContainer = option.querySelector('.variant-values-container');
+                    const selectedImage = option.querySelector('input[name^="variant-image"]:checked')?.value || '';
+                    
+                    if (nameInput && valuesContainer) {
+                        const name = nameInput.value.trim();
+                        const valueInputs = valuesContainer.querySelectorAll('.variant-value-input');
+                        const values = Array.from(valueInputs)
+                            .map(input => input.value.trim())
+                            .filter(value => value);
+                        
+                        if (name && values.length > 0) {
+                            variants.push({
+                                name: name,
+                                values: values,
+                                image: selectedImage !== '' ? selectedImage : null
+                            });
+                        }
                     }
                 });
-
+                
                 if (title) {
                     products.push({
                         title,
@@ -956,38 +1468,57 @@
                     });
                 }
             });
-
+            
             return products;
         }
 
         function validateForm(products) {
             const errors = [];
-
+            
             products.forEach((product, index) => {
                 const productNum = index + 1;
-
+                const productCards = document.querySelectorAll('.product-card');
+                
                 // Vérifier le type de produit
                 if (!product.productType) {
                     errors.push(`Produit ${productNum}: Merci de sélectionner le type (Physique ou Digital)`);
                 }
-
-                // Vérifier les variantes incomplètes
-                const productCard = document.getElementById(`product-${document.querySelectorAll('.product-card')[index].id.split('-')[1]}`);
-                const variantOptions = productCard?.querySelectorAll('.variant-option') || [];
-
-                variantOptions.forEach((option, varIndex) => {
-                    const name = option.querySelector('input[name="variant-name"]').value.trim();
-                    const values = option.querySelector('input[name="variant-values"]').value.trim();
-
-                    if (name && !values) {
-                        errors.push(`Produit ${productNum}, Option ${varIndex + 1}: Tu as mis un nom "${name}" mais pas de valeurs`);
+                
+                // Vérifier les variantes incomplètes et les limites
+                if (productCards[index]) {
+                    const variantOptions = productCards[index].querySelectorAll('.variant-option');
+                    
+                    let totalCombinations = 1;
+                    let hasVariants = false;
+                    
+                    variantOptions.forEach((option, varIndex) => {
+                        const name = option.querySelector('input[name="variant-name"]')?.value?.trim() || '';
+                        const values = option.querySelector('input[name="variant-values"]')?.value?.trim() || '';
+                        
+                        if (name && !values) {
+                            errors.push(`Produit ${productNum}, Option ${varIndex + 1}: Tu as mis un nom "${name}" mais pas de valeurs`);
+                        }
+                        if (!name && values) {
+                            errors.push(`Produit ${productNum}, Option ${varIndex + 1}: Tu as mis des valeurs "${values}" mais pas de nom d'option`);
+                        }
+                        
+                        // Calculer les combinaisons
+                        if (name && values) {
+                            const valueList = values.split(',').map(v => v.trim()).filter(v => v);
+                            if (valueList.length > 0) {
+                                totalCombinations *= valueList.length;
+                                hasVariants = true;
+                            }
+                        }
+                    });
+                    
+                    // Vérifier la limite de 100 combinaisons
+                    if (hasVariants && totalCombinations > 100) {
+                        errors.push(`Produit ${productNum}: Trop de combinaisons (${totalCombinations}). Shopify limite à 100 max. Réduis les options ou divise en plusieurs produits.`);
                     }
-                    if (!name && values) {
-                        errors.push(`Produit ${productNum}, Option ${varIndex + 1}: Tu as mis des valeurs "${values}" mais pas de nom d'option`);
-                    }
-                });
+                }
             });
-
+            
             return errors;
         }
 
@@ -1011,7 +1542,7 @@
                     const savedTime = new Date(data.timestamp);
                     const now = new Date();
                     const diffHours = (now - savedTime) / (1000 * 60 * 60);
-
+                    
                     if (diffHours < 24 && data.products && data.products.length > 0) {
                         return data.products;
                     }
@@ -1034,19 +1565,19 @@
             // Vérifier les informations boutique obligatoires
             const shopName = document.getElementById('shop-name').value.trim();
             const shopEmail = document.getElementById('shop-email').value.trim();
-
+            
             if (!shopName) {
                 alert('Merci de renseigner le nom de ta boutique !');
                 document.getElementById('shop-name').focus();
                 return;
             }
-
+            
             if (!shopEmail) {
                 alert('Merci de renseigner ton email de contact !');
                 document.getElementById('shop-email').focus();
                 return;
             }
-
+            
             // Validation email basique
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(shopEmail)) {
@@ -1054,22 +1585,41 @@
                 document.getElementById('shop-email').focus();
                 return;
             }
-
+            
             const products = collectFormData();
-
+            
             if (products.length === 0) {
                 alert('Ajoute au moins un produit avec un titre !');
                 return;
             }
-
+            
             // Validation des données produits
             const errors = validateForm(products);
             if (errors.length > 0) {
                 alert('Merci de corriger ces erreurs :\n\n' + errors.join('\n'));
                 return;
             }
-
+            
             // Ajouter les infos boutique aux données
+            const submissionData = {
+                shopInfo: {
+                    name: shopName,
+                    email: shopEmail
+                },
+                products: products,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Sauvegarder temporairement
+            saveToLocalStorage(products);
+            
+            const submitBtn = document.querySelector('.btn-primary');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '⏳ Envoi en cours...';
+            submitBtn.disabled = true;
+            
+            // Construire les données
             const formData = {
                 shopInfo: {
                     name: shopName,
@@ -1078,45 +1628,34 @@
                 products: products,
                 timestamp: new Date().toISOString()
             };
-
-            // Sauvegarder temporairement
-            saveToLocalStorage(products);
-
-            const submitBtn = document.querySelector('.btn-primary');
-            const originalText = submitBtn.innerHTML;
-
-            submitBtn.innerHTML = '⏳ Envoi en cours...';
-            submitBtn.disabled = true;
-
-            // Envoyer vers Google Sheets
-            fetch("https://script.google.com/macros/s/AKfycbzVnoHVNEVRupPBbCc9p2ZqBKC96bM3r73diRLxbAsPwf55mBRWQIqBnQlNhDP92fsQ5Q/exec", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        // Succès
-                        console.log('Données envoyées avec succès:', formData);
-                        document.getElementById('success-message').style.display = 'block';
-                        document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
-
-                        // Nettoyer le localStorage après succès
-                        clearLocalStorage();
-                    } else {
-                        throw new Error("Erreur serveur");
-                    }
-                })
-                .catch(error => {
-                    // Erreur réseau ou serveur
-                    alert('❌ Erreur lors de l\'envoi. Tes données sont sauvegardées, réessaie dans quelques instants.');
-                    console.error("Erreur:", error);
-                })
-                .finally(() => {
-                    // Remettre le bouton normal dans tous les cas
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                });
+            
+            // Validation JSON
+            try {
+                JSON.stringify(formData);
+            } catch (e) {
+                alert('Erreur dans les données, réessaie');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            // Injecter dans le champ hidden
+            document.getElementById("gsheet-data").value = JSON.stringify(formData);
+            
+            // Soumettre le formulaire HTML natif (pas de CORS)
+            document.getElementById("gsheet-form").submit();
+            
+            // Démarrer un timeout pour le feedback
+            setTimeout(() => {
+                // Afficher le message de succès
+                document.getElementById('success-message').style.display = 'block';
+                document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+                clearLocalStorage();
+                
+                // Remettre le bouton normal
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
         }
 
         function restoreFromDraft() {
@@ -1143,18 +1682,18 @@
         }
 
         // Ajouter le premier produit au chargement
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Vérifier s'il y a une sauvegarde
             restoreFromDraft();
-
+            
             // Ajouter le premier produit
             addProduct();
-
+            
             // Démarrer l'auto-sauvegarde
             setupAutoSave();
-
+            
             // Ajouter un avertissement avant de quitter la page
-            window.addEventListener('beforeunload', function (e) {
+            window.addEventListener('beforeunload', function(e) {
                 const products = collectFormData();
                 if (products.length > 0) {
                     e.preventDefault();
@@ -1164,5 +1703,4 @@
         });
     </script>
 </body>
-
 </html>
