@@ -1543,42 +1543,7 @@
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }, 2000);
-        }
-
-        function restoreFromDraft() {
-            const savedProducts = loadFromLocalStorage();
-            if (savedProducts && savedProducts.length > 0) {
-                const restore = confirm(`J'ai trouvé une sauvegarde de ${savedProducts.length} produit(s) d'hier. Veux-tu la restaurer ?`);
-                if (restore) {
-                    // Ici tu pourrais implémenter la restauration des données
-                    // Pour l'instant, on affiche juste l'info
-                    console.log('Produits sauvegardés:', savedProducts);
-                    alert('Fonctionnalité de restauration à implémenter');
-                }
-            }
-        }
-
-        // Auto-sauvegarde pendant la saisie
-        function setupAutoSave() {
-            setInterval(() => {
-                const products = collectFormData();
-                if (products.length > 0) {
-                    saveToLocalStorage(products);
-                }
-            }, 30000); // Sauvegarde toutes les 30 secondes
-        }
-
-        // Ajouter le premier produit au chargement
-        document.addEventListener('DOMContentLoaded', function() {
-            // Vérifier s'il y a une sauvegarde
-            restoreFromDraft();
-            
-            // Ajouter le premier produit
-            addProduct();
-            
-            // Démarrer l'auto-sauvegarde
-            setupAutoSave();
-            
+        }   
             // Ajouter un avertissement avant de quitter la page
             window.addEventListener('beforeunload', function(e) {
                 const products = collectFormData();
@@ -1587,7 +1552,6 @@
                     e.returnValue = 'Tu as des produits non sauvegardés. Es-tu sûre de vouloir quitter ?';
                 }
             });
-        });
     </script>
 </body>
 </html>
