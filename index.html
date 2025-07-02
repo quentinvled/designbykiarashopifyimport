@@ -182,7 +182,7 @@
             font-size: 0.9rem;
         }
         
-        input[type="text"], input[type="url"], input[type="number"], textarea, select {
+        input[type="text"], input[type="url"], input[type="number"], input[type="email"], textarea, select {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #fce4ec;
@@ -361,73 +361,6 @@
             border: 2px solid #fce4ec;
         }
         
-        .variant-warning {
-            background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .variants-count {
-            font-weight: 600;
-            color: #a855f7;
-        }
-        
-        .variant-total-warning {
-            background: #fff3cd;
-            color: #856404;
-            padding: 10px;
-            border-radius: 6px;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            border: 1px solid #ffeaa7;
-        }
-        
-        .image-selector {
-            margin-top: 15px;
-        }
-        
-        .image-selector label {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 8px;
-        }
-        
-        .image-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .image-option {
-            position: relative;
-            cursor: pointer;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .image-option:hover {
-            border-color: #a855f7;
-        }
-        
-        .image-option.selected {
-            border-color: #a855f7;
-            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
-        }
-        
-        .image-option img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-        }
-        
         .variants-section {
             margin-top: 30px;
             padding: 25px;
@@ -551,69 +484,6 @@
             outline: none;
         }
         
-        .variant-value-remove {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 4px 8px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .variant-value-remove:hover {
-            background: #c0392b;
-        }
-        
-        .add-variant-value {
-            background: transparent;
-            border: 2px dashed #a855f7;
-            color: #a855f7;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            margin-top: 5px;
-        }
-        
-        .variant-option {
-            background: #fdf2f8;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 1px solid #fce4ec;
-        }
-        
-        .variant-values-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .variant-value-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 0;
-        }
-        
-        .variant-value-input {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .variant-value-input:focus {
-            border-color: #a855f7;
-            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.1);
-            outline: none;
-        }
-        
         .variant-value-input.empty {
             border-style: dashed;
             border-color: #ccc;
@@ -651,6 +521,14 @@
         .add-variant-value:hover {
             background: #fdf2f8;
             border-color: #7c3aed;
+        }
+        
+        .variant-option {
+            background: #fdf2f8;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #fce4ec;
         }
         
         .variant-header {
@@ -747,6 +625,17 @@
             display: none;
         }
         
+        .debug-section {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -825,7 +714,12 @@
                 <button type="button" class="btn btn-primary" onclick="submitForm()">
                     💌 Envoyer mes produits
                 </button>
+                <button type="button" class="btn btn-secondary" onclick="debugData()" style="font-size: 0.8rem;">
+                    🔍 Debug
+                </button>
             </div>
+            
+            <div id="debug-output" class="debug-section" style="display: none;"></div>
         </div>
         
         <div class="export-section">
@@ -943,7 +837,7 @@
                         <div id="uploaded-images-${productCount}" class="uploaded-images"></div>
                     </div>
                     
-                    <div class="form-group">
+                                            <div class="form-group">
                         <div class="label-with-help">
                             <label for="price-${productCount}">Prix de base <span class="optional">(facultatif)</span></label>
                             <div class="help-icon">?
@@ -1233,6 +1127,9 @@
             `;
             
             variantsContainer.insertAdjacentHTML('beforeend', variantHtml);
+            
+            // Ajouter automatiquement une première valeur vide
+            addVariantValue(productId, variantCount);
             updateVariantCounts(productId);
         }
 
@@ -1279,7 +1176,7 @@
             
             // S'assurer qu'il y a toujours au moins un champ vide
             if (container.children.length === 0) {
-                const productIdNum = productId;
+                const productIdNum = parseInt(productId.toString().replace('product-', ''));
                 const variantId = container.id.split('-')[2];
                 addVariantValue(productIdNum, variantId);
             }
@@ -1303,6 +1200,18 @@
             updateVariantCounts(productId);
         }
 
+        function handleVariantValueBlur(input, productId, variantId) {
+            // Supprimer les champs vides sauf le dernier
+            const container = input.closest('.variant-values-container');
+            const allInputs = container.querySelectorAll('.variant-value-input');
+            const emptyInputs = Array.from(allInputs).filter(inp => !inp.value.trim());
+            
+            // Garder au moins un champ vide
+            if (emptyInputs.length > 1 && !input.value.trim()) {
+                input.closest('.variant-value-item').remove();
+            }
+        }
+
         function selectVariantImage(element) {
             // Retirer la sélection des autres images
             const container = element.closest('.image-options');
@@ -1311,32 +1220,6 @@
             // Sélectionner l'image cliquée
             element.classList.add('selected');
             element.querySelector('input[type="radio"]').checked = true;
-        }
-
-        function addVariantValue(productId, variantId) {
-            const container = document.getElementById(`variant-values-${productId}-${variantId}`);
-            const valueCount = container.children.length;
-            const valueId = `${productId}-${variantId}-${valueCount}`;
-            
-            const valueHtml = `
-                <div class="variant-value-item" id="variant-value-${valueId}">
-                    <input type="text" 
-                           class="variant-value-input" 
-                           placeholder="Ex: Rouge, M, Coton..." 
-                           data-product="${productId}" 
-                           data-variant="${variantId}"
-                           data-value="${valueCount}"
-                           oninput="updateVariantCounts(${productId})">
-                    <button type="button" class="variant-value-remove" onclick="removeVariantValue('variant-value-${valueId}', ${productId})">×</button>
-                </div>
-            `;
-            
-            container.insertAdjacentHTML('beforeend', valueHtml);
-        }
-
-        function removeVariantValue(valueId, productId) {
-            document.getElementById(valueId).remove();
-            updateVariantCounts(productId);
         }
 
         function updateVariantCounts(productId) {
@@ -1404,6 +1287,7 @@
             document.getElementById('product-count').textContent = count;
         }
 
+        // FONCTION CORRIGÉE POUR COLLECTER LES DONNÉES
         function collectFormData() {
             const products = [];
             const productCards = document.querySelectorAll('.product-card');
@@ -1429,26 +1313,26 @@
                     images.push({ name: imgName, details: imgDetails, src: imgSrc });
                 });
                 
-                // Collecter les variantes
+                // COLLECTE CORRIGÉE DES VARIANTES
                 const variants = [];
                 const variantOptions = card.querySelectorAll('.variant-option');
                 variantOptions.forEach(option => {
                     const nameInput = option.querySelector('input[name="variant-name"]');
                     const valuesContainer = option.querySelector('.variant-values-container');
-                    const selectedImage = option.querySelector('input[name^="variant-image"]:checked')?.value || '';
+                    const selectedImageInput = option.querySelector('input[name^="variant-image"]:checked');
                     
                     if (nameInput && valuesContainer) {
                         const name = nameInput.value.trim();
                         const valueInputs = valuesContainer.querySelectorAll('.variant-value-input');
                         const values = Array.from(valueInputs)
                             .map(input => input.value.trim())
-                            .filter(value => value);
+                            .filter(value => value !== ''); // Filtrer les valeurs vides
                         
                         if (name && values.length > 0) {
                             variants.push({
                                 name: name,
                                 values: values,
-                                image: selectedImage !== '' ? selectedImage : null
+                                image: selectedImageInput ? (selectedImageInput.value !== '' ? selectedImageInput.value : null) : null
                             });
                         }
                     }
@@ -1472,6 +1356,7 @@
             return products;
         }
 
+        // VALIDATION CORRIGÉE
         function validateForm(products) {
             const errors = [];
             
@@ -1492,23 +1377,26 @@
                     let hasVariants = false;
                     
                     variantOptions.forEach((option, varIndex) => {
-                        const name = option.querySelector('input[name="variant-name"]')?.value?.trim() || '';
-                        const values = option.querySelector('input[name="variant-values"]')?.value?.trim() || '';
+                        const nameInput = option.querySelector('input[name="variant-name"]');
+                        const valuesContainer = option.querySelector('.variant-values-container');
                         
-                        if (name && !values) {
+                        const name = nameInput?.value?.trim() || '';
+                        const valueInputs = valuesContainer?.querySelectorAll('.variant-value-input') || [];
+                        const values = Array.from(valueInputs)
+                            .map(input => input.value.trim())
+                            .filter(value => value !== '');
+                        
+                        if (name && values.length === 0) {
                             errors.push(`Produit ${productNum}, Option ${varIndex + 1}: Tu as mis un nom "${name}" mais pas de valeurs`);
                         }
-                        if (!name && values) {
-                            errors.push(`Produit ${productNum}, Option ${varIndex + 1}: Tu as mis des valeurs "${values}" mais pas de nom d'option`);
+                        if (!name && values.length > 0) {
+                            errors.push(`Produit ${productNum}, Option ${varIndex + 1}: Tu as mis des valeurs mais pas de nom d'option`);
                         }
                         
                         // Calculer les combinaisons
-                        if (name && values) {
-                            const valueList = values.split(',').map(v => v.trim()).filter(v => v);
-                            if (valueList.length > 0) {
-                                totalCombinations *= valueList.length;
-                                hasVariants = true;
-                            }
+                        if (name && values.length > 0) {
+                            totalCombinations *= values.length;
+                            hasVariants = true;
                         }
                     });
                     
@@ -1561,6 +1449,15 @@
             }
         }
 
+        // FONCTION DEBUG POUR VÉRIFIER LES DONNÉES
+        function debugData() {
+            const products = collectFormData();
+            const debugDiv = document.getElementById('debug-output');
+            debugDiv.style.display = 'block';
+            debugDiv.textContent = JSON.stringify(products, null, 2);
+            debugDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
         function submitForm() {
             // Vérifier les informations boutique obligatoires
             const shopName = document.getElementById('shop-name').value.trim();
@@ -1600,19 +1497,6 @@
                 return;
             }
             
-            // Ajouter les infos boutique aux données
-            const submissionData = {
-                shopInfo: {
-                    name: shopName,
-                    email: shopEmail
-                },
-                products: products,
-                timestamp: new Date().toISOString()
-            };
-            
-            // Sauvegarder temporairement
-            saveToLocalStorage(products);
-            
             const submitBtn = document.querySelector('.btn-primary');
             const originalText = submitBtn.innerHTML;
             
@@ -1638,6 +1522,9 @@
                 submitBtn.disabled = false;
                 return;
             }
+            
+            // Sauvegarder temporairement
+            saveToLocalStorage(products);
             
             // Injecter dans le champ hidden
             document.getElementById("gsheet-data").value = JSON.stringify(formData);
