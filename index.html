@@ -18,6 +18,23 @@
             padding: 20px;
         }
         
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -25,6 +42,7 @@
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15);
             overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
         }
         
         .header {
@@ -32,17 +50,39 @@
             color: white;
             padding: 30px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .header h1 {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
         
         .header p {
             font-size: 1.1rem;
             opacity: 0.95;
+            position: relative;
+            z-index: 1;
         }
         
         .form-container {
@@ -55,6 +95,7 @@
             padding: 30px;
             margin-bottom: 40px;
             border: 2px solid #f3e8ff;
+            animation: fadeIn 0.8s ease-out 0.2s both;
         }
         
         .shop-info-section h2 {
@@ -84,6 +125,13 @@
             margin-bottom: 30px;
             border: 2px solid #fce4ec;
             position: relative;
+            animation: slideIn 0.5s ease-out;
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.1);
         }
         
         .product-number {
@@ -156,6 +204,7 @@
             display: none;
             max-width: 250px;
             white-space: normal;
+            animation: fadeIn 0.3s ease-out;
         }
         
         .help-tooltip::before {
@@ -228,6 +277,7 @@
         .radio-option.selected {
             border-color: #a855f7;
             background: #fce7f3;
+            animation: pulse 0.3s ease-out;
         }
         
         .radio-option input[type="radio"] {
@@ -244,10 +294,16 @@
             background: #fdf2f8;
             border-radius: 10px;
             border: 1px solid #fce4ec;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-group:hover {
+            background: #fce7f3;
         }
         
         .checkbox-group input[type="checkbox"] {
             width: auto;
+            cursor: pointer;
         }
         
         .ai-description {
@@ -257,6 +313,7 @@
             border-radius: 10px;
             margin-top: 10px;
             font-size: 0.9rem;
+            animation: fadeIn 0.3s ease-out;
         }
         
         .file-upload-area {
@@ -267,6 +324,8 @@
             background: #fdf2f8;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
         .file-upload-area:hover {
@@ -277,6 +336,22 @@
         .file-upload-area.dragover {
             background: #fce7f3;
             border-color: #7c3aed;
+            transform: scale(1.02);
+        }
+        
+        .file-upload-area.uploading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: #a855f7;
+            animation: uploadProgress 2s ease-out infinite;
+        }
+        
+        @keyframes uploadProgress {
+            from { width: 0%; }
+            to { width: 100%; }
         }
         
         .file-upload-text {
@@ -301,6 +376,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            animation: pulse 2s ease-in-out infinite;
         }
         
         .uploaded-images {
@@ -316,6 +392,13 @@
             border-radius: 8px;
             border: 1px solid #e0e0e0;
             margin-bottom: 8px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .image-summary:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .image-preview {
@@ -359,6 +442,7 @@
             padding: 20px;
             margin-top: 15px;
             border: 2px solid #fce4ec;
+            animation: fadeIn 0.3s ease-out;
         }
         
         .variants-section {
@@ -379,6 +463,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            animation: slideIn 0.3s ease-out;
         }
         
         .variants-count {
@@ -394,6 +479,7 @@
             margin-top: 10px;
             font-size: 0.85rem;
             border: 1px solid #ffeaa7;
+            animation: fadeIn 0.3s ease-out;
         }
         
         .image-selector {
@@ -423,6 +509,7 @@
         
         .image-option:hover {
             border-color: #a855f7;
+            transform: scale(1.1);
         }
         
         .image-option.selected {
@@ -467,6 +554,7 @@
             align-items: center;
             gap: 8px;
             padding: 6px 0;
+            animation: fadeIn 0.3s ease-out;
         }
         
         .variant-value-input {
@@ -504,6 +592,7 @@
         
         .variant-value-remove:hover {
             background: #c0392b;
+            transform: scale(1.1);
         }
         
         .add-variant-value {
@@ -521,6 +610,7 @@
         .add-variant-value:hover {
             background: #fdf2f8;
             border-color: #7c3aed;
+            transform: translateY(-1px);
         }
         
         .variant-option {
@@ -529,6 +619,7 @@
             padding: 20px;
             margin-bottom: 15px;
             border: 1px solid #fce4ec;
+            animation: slideIn 0.3s ease-out;
         }
         
         .variant-header {
@@ -551,6 +642,26 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
         }
         
         .btn-primary {
@@ -561,6 +672,14 @@
         .btn-primary:hover {
             background: #7c3aed;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(168, 85, 247, 0.3);
+        }
+        
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
         
         .btn-secondary {
@@ -570,6 +689,7 @@
         
         .btn-secondary:hover {
             background: #a855f7;
+            transform: translateY(-2px);
         }
         
         .btn-danger {
@@ -581,6 +701,7 @@
         
         .btn-danger:hover {
             background: #c0392b;
+            transform: scale(1.05);
         }
         
         .btn-outline {
@@ -592,6 +713,7 @@
         .btn-outline:hover {
             background: #a855f7;
             color: white;
+            transform: translateY(-2px);
         }
         
         .actions {
@@ -608,11 +730,31 @@
             color: white;
             padding: 30px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .export-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         
         .product-count {
             font-size: 1.2rem;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .success-message {
@@ -623,6 +765,65 @@
             margin: 20px 0;
             border: 1px solid #c3e6cb;
             display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #f5c6cb;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .loading-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #a855f7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .loading-subtext {
+            font-size: 0.9rem;
+            color: #666;
         }
         
         .debug-section {
@@ -634,6 +835,78 @@
             font-family: monospace;
             font-size: 12px;
             white-space: pre-wrap;
+        }
+        
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+            animation: slideInRight 0.3s ease-out;
+            max-width: 350px;
+            z-index: 1000;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .notification.success {
+            border-left: 4px solid #28a745;
+        }
+        
+        .notification.error {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .notification.info {
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .notification-message {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #a855f7, #c084fc);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 1s infinite;
         }
         
         @media (max-width: 768px) {
@@ -662,10 +935,70 @@
                 flex-direction: column;
                 gap: 10px;
             }
+            
+            .notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+        
+        /* Toast messages */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .toast {
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            animation: slideIn 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 250px;
+        }
+        
+        .toast.success {
+            background: #28a745;
+        }
+        
+        .toast.error {
+            background: #dc3545;
+        }
+        
+        .toast.info {
+            background: #17a2b8;
         }
     </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Envoi en cours...</div>
+            <div class="loading-subtext">Upload des images et sauvegarde des données</div>
+            <div class="progress-container" id="upload-progress" style="display: block; margin-top: 20px;">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-title"></div>
+        <div class="notification-message"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
     <div class="container">
         <div class="header">
             <h1>🛍️ Collecte Produits Shopify</h1>
@@ -675,6 +1008,10 @@
         <div class="form-container">
             <div class="success-message" id="success-message">
                 ✅ Tes produits ont été envoyés avec succès ! Je vais maintenant créer ton catalogue Shopify.
+            </div>
+            
+            <div class="error-message" id="error-message">
+                ❌ Une erreur est survenue. Merci de réessayer.
             </div>
             
             <!-- Section informations boutique -->
@@ -731,7 +1068,7 @@
     </div>
 
     <!-- Formulaire caché pour Google Sheets (évite CORS) -->
-    <form id="gsheet-form" method="POST" action="https://script.google.com/macros/s/AKfycbyDzrw0tLzH7hcQiv87pJ9swZKirNXE-kfyOtLVDokSF5FAWsIId3nzkmfwG83O_riYxA/exec";>
+    <form id="gsheet-form" method="POST" action="https://script.google.com/macros/s/AKfycbyDzrw0tLzH7hcQiv87pJ9swZKirNXE-kfyOtLVDokSF5FAWsIId3nzkmfwG83O_riYxA/exec" target="invisible-frame" style="display:none;">
         <input type="hidden" name="data" id="gsheet-data">
     </form>
     <iframe name="invisible-frame" style="display:none;"></iframe>
@@ -739,6 +1076,46 @@
     <script>
         let productCount = 0;
         let products = [];
+
+        // Fonction pour afficher les notifications
+        function showNotification(title, message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const titleEl = notification.querySelector('.notification-title');
+            const messageEl = notification.querySelector('.notification-message');
+            
+            notification.className = `notification ${type}`;
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+            
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+
+        // Fonction pour afficher les toasts
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => {
+                    container.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // Fonction pour mettre à jour la barre de progression
+        function updateProgress(percent) {
+            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = `${percent}%`;
+        }
 
         function createProductForm() {
             productCount++;
@@ -931,11 +1308,14 @@
 
         function processImages(files, productId) {
             const container = document.getElementById(`uploaded-images-${productId}`);
+            const uploadArea = container.previousElementSibling.previousElementSibling;
+            
+            uploadArea.classList.add('uploading');
             
             files.forEach((file, index) => {
                 // Vérifier la taille du fichier
                 if (file.size > 5 * 1024 * 1024) {
-                    alert(`L'image ${file.name} est trop lourde (max 5MB)`);
+                    showToast(`L'image ${file.name} est trop lourde (max 5MB)`, 'error');
                     return;
                 }
                 
@@ -949,7 +1329,7 @@
                         
                         // Rejeter si trop mauvaise qualité
                         if (quality.level === 'poor' && (this.width < 500 || this.height < 500)) {
-                            alert(`L'image ${file.name} est de trop mauvaise qualité (${resolution}). Minimum 500px recommandé.`);
+                            showToast(`L'image ${file.name} est de trop mauvaise qualité (${resolution})`, 'error');
                             return;
                         }
                         
@@ -967,16 +1347,23 @@
                         
                         // Mettre à jour les sélecteurs d'images dans les variantes existantes
                         updateVariantImageSelectors(productId);
+                        
+                        showToast(`Image ${file.name} ajoutée`, 'success');
                     };
                     img.src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             });
+            
+            setTimeout(() => {
+                uploadArea.classList.remove('uploading');
+            }, 1000);
         }
 
         function removeImage(button, productId) {
             button.parentElement.remove();
             updateVariantImageSelectors(productId);
+            showToast('Image supprimée', 'info');
         }
 
         function updateVariantImageSelectors(productId) {
@@ -1045,11 +1432,19 @@
                     aiInfo.style.display = this.checked ? 'block' : 'none';
                 });
             }
+            
+            // Scroll vers le nouveau produit
+            document.getElementById(`product-${productCount}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            showToast('Nouveau produit ajouté', 'success');
         }
 
         function removeProduct(productId) {
-            document.getElementById(productId).remove();
-            updateProductCount();
+            if (confirm('Es-tu sûre de vouloir supprimer ce produit ?')) {
+                document.getElementById(productId).remove();
+                updateProductCount();
+                showToast('Produit supprimé', 'info');
+            }
         }
 
         function addVariantOption(productId) {
@@ -1059,6 +1454,7 @@
             // Vérifier la limite de 3 options
             if (currentVariants >= 3) {
                 document.getElementById(`variant-warning-${productId}`).style.display = 'block';
+                showToast('Limite de 3 options atteinte', 'error');
                 return;
             }
             
@@ -1105,7 +1501,7 @@
                                 <div class="help-tooltip">Ex: Couleur, Taille, Matière, Style...</div>
                             </div>
                         </div>
-                        <input type="text" name="variant-name" placeholder="Couleur" data-product="${productId}" data-variant="${variantCount}" onchange="updateVariantCounts(${productId})" oninput="updateVariantCounts(${productId})">
+                        <input type="text" name="variant-name" placeholder="Couleur" data-product="${productId}" data-variant="${variantCount}" oninput="updateVariantCounts(${productId})">
                     </div>
                     <div class="form-group">
                         <div class="label-with-help">
@@ -1131,16 +1527,22 @@
             // Ajouter automatiquement une première valeur vide
             addVariantValue(productId, variantCount);
             updateVariantCounts(productId);
+            
+            showToast('Option de variante ajoutée', 'success');
         }
 
         function removeVariantOption(variantId, productId) {
-            document.getElementById(variantId).remove();
-            updateVariantCounts(productId);
-            
-            // Masquer l'avertissement si on repasse sous la limite
-            const currentVariants = document.querySelectorAll(`#variants-${productId} .variant-option`).length;
-            if (currentVariants < 3) {
-                document.getElementById(`variant-warning-${productId}`).style.display = 'none';
+            if (confirm('Supprimer cette option et toutes ses valeurs ?')) {
+                document.getElementById(variantId).remove();
+                updateVariantCounts(productId);
+                
+                // Masquer l'avertissement si on repasse sous la limite
+                const currentVariants = document.querySelectorAll(`#variants-${productId} .variant-option`).length;
+                if (currentVariants < 3) {
+                    document.getElementById(`variant-warning-${productId}`).style.display = 'none';
+                }
+                
+                showToast('Option supprimée', 'info');
             }
         }
 
@@ -1157,7 +1559,6 @@
                            data-product="${productId}" 
                            data-variant="${variantId}"
                            data-value="${valueCount}"
-                           oninput="handleVariantValueInput(this, ${productId}, ${variantId})"
                            onblur="handleVariantValueBlur(this, ${productId}, ${variantId})">
                     <button type="button" class="variant-value-remove" onclick="removeVariantValue('variant-value-${valueId}', ${productId})">×</button>
                 </div>
@@ -1184,12 +1585,13 @@
             updateVariantCounts(productId);
         }
 
-        function handleVariantValueInput(input, productId, variantId) {
+        function handleVariantValueBlur(input, productId, variantId) {
             const container = input.closest('.variant-values-container');
             const allInputs = container.querySelectorAll('.variant-value-input');
+            const filledInputs = Array.from(allInputs).filter(inp => inp.value.trim());
             const emptyInputs = Array.from(allInputs).filter(inp => !inp.value.trim());
             
-            // Si on tape dans un champ vide et qu'il n'y a plus d'autre champ vide, en créer un
+            // Si on a rempli le dernier champ et qu'il n'y a pas d'autre champ vide
             if (input.value.trim() && emptyInputs.length === 0) {
                 addVariantValue(productId, variantId);
             }
@@ -1198,18 +1600,6 @@
             input.classList.toggle('empty', !input.value.trim());
             
             updateVariantCounts(productId);
-        }
-
-        function handleVariantValueBlur(input, productId, variantId) {
-            // Supprimer les champs vides sauf le dernier
-            const container = input.closest('.variant-values-container');
-            const allInputs = container.querySelectorAll('.variant-value-input');
-            const emptyInputs = Array.from(allInputs).filter(inp => !inp.value.trim());
-            
-            // Garder au moins un champ vide
-            if (emptyInputs.length > 1 && !input.value.trim()) {
-                input.closest('.variant-value-item').remove();
-            }
         }
 
         function selectVariantImage(element) {
@@ -1287,6 +1677,7 @@
             document.getElementById('product-count').textContent = count;
         }
 
+        // FONCTION CORRIGÉE POUR COLLECTER LES DONNÉES
         function collectFormData() {
             const products = [];
             const productCards = document.querySelectorAll('.product-card');
@@ -1312,7 +1703,7 @@
                     images.push({ name: imgName, details: imgDetails, src: imgSrc });
                 });
                 
-                // Collecter les variantes
+                // COLLECTE CORRIGÉE DES VARIANTES
                 const variants = [];
                 const variantOptions = card.querySelectorAll('.variant-option');
                 variantOptions.forEach(option => {
@@ -1325,7 +1716,7 @@
                         const valueInputs = valuesContainer.querySelectorAll('.variant-value-input');
                         const values = Array.from(valueInputs)
                             .map(input => input.value.trim())
-                            .filter(value => value !== '');
+                            .filter(value => value !== ''); // Filtrer les valeurs vides
                         
                         if (name && values.length > 0) {
                             variants.push({
@@ -1355,6 +1746,7 @@
             return products;
         }
 
+        // VALIDATION CORRIGÉE
         function validateForm(products) {
             const errors = [];
             
@@ -1408,6 +1800,46 @@
             return errors;
         }
 
+        function saveToLocalStorage(products) {
+            try {
+                localStorage.setItem('shopify_products_draft', JSON.stringify({
+                    products: products,
+                    timestamp: new Date().toISOString()
+                }));
+            } catch (e) {
+                console.warn('Impossible de sauvegarder localement:', e);
+            }
+        }
+
+        function loadFromLocalStorage() {
+            try {
+                const saved = localStorage.getItem('shopify_products_draft');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    // Vérifier si c'est récent (moins de 24h)
+                    const savedTime = new Date(data.timestamp);
+                    const now = new Date();
+                    const diffHours = (now - savedTime) / (1000 * 60 * 60);
+                    
+                    if (diffHours < 24 && data.products && data.products.length > 0) {
+                        return data.products;
+                    }
+                }
+            } catch (e) {
+                console.warn('Erreur lors du chargement:', e);
+            }
+            return null;
+        }
+
+        function clearLocalStorage() {
+            try {
+                localStorage.removeItem('shopify_products_draft');
+            } catch (e) {
+                console.warn('Erreur lors de la suppression:', e);
+            }
+        }
+
+        // FONCTION DEBUG POUR VÉRIFIER LES DONNÉES
         function debugData() {
             const products = collectFormData();
             const debugDiv = document.getElementById('debug-output');
@@ -1416,19 +1848,19 @@
             debugDiv.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function submitForm() {
+        async function submitForm() {
             // Vérifier les informations boutique obligatoires
             const shopName = document.getElementById('shop-name').value.trim();
             const shopEmail = document.getElementById('shop-email').value.trim();
             
             if (!shopName) {
-                alert('Merci de renseigner le nom de ta boutique !');
+                showNotification('Champ requis', 'Merci de renseigner le nom de ta boutique !', 'error');
                 document.getElementById('shop-name').focus();
                 return;
             }
             
             if (!shopEmail) {
-                alert('Merci de renseigner ton email de contact !');
+                showNotification('Champ requis', 'Merci de renseigner ton email de contact !', 'error');
                 document.getElementById('shop-email').focus();
                 return;
             }
@@ -1436,7 +1868,7 @@
             // Validation email basique
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(shopEmail)) {
-                alert('Merci de saisir une adresse email valide !');
+                showNotification('Email invalide', 'Merci de saisir une adresse email valide !', 'error');
                 document.getElementById('shop-email').focus();
                 return;
             }
@@ -1444,16 +1876,21 @@
             const products = collectFormData();
             
             if (products.length === 0) {
-                alert('Ajoute au moins un produit avec un titre !');
+                showNotification('Aucun produit', 'Ajoute au moins un produit avec un titre !', 'error');
                 return;
             }
             
             // Validation des données produits
             const errors = validateForm(products);
             if (errors.length > 0) {
-                alert('Merci de corriger ces erreurs :\n\n' + errors.join('\n'));
+                showNotification('Erreurs de validation', errors.join('\n'), 'error');
                 return;
             }
+            
+            // Afficher le loading
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.style.display = 'flex';
+            updateProgress(0);
             
             const submitBtn = document.querySelector('.btn-primary');
             const originalText = submitBtn.innerHTML;
@@ -1475,11 +1912,25 @@
             try {
                 JSON.stringify(formData);
             } catch (e) {
-                alert('Erreur dans les données, réessaie');
+                showNotification('Erreur de données', 'Erreur dans les données, réessaie', 'error');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
+                loadingOverlay.style.display = 'none';
                 return;
             }
+            
+            // Sauvegarder temporairement
+            saveToLocalStorage(products);
+            
+            // Simuler la progression
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 10;
+                updateProgress(progress);
+                if (progress >= 90) {
+                    clearInterval(progressInterval);
+                }
+            }, 200);
             
             // Injecter dans le champ hidden
             document.getElementById("gsheet-data").value = JSON.stringify(formData);
@@ -1489,19 +1940,52 @@
             
             // Démarrer un timeout pour le feedback
             setTimeout(() => {
-                // Afficher le message de succès
-                document.getElementById('success-message').style.display = 'block';
-                document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+                clearInterval(progressInterval);
+                updateProgress(100);
                 
-                // Remettre le bouton normal
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
-        }   
-        
-        // Initialisation
-        window.addEventListener('DOMContentLoaded', function() {
+                setTimeout(() => {
+                    // Masquer le loading
+                    loadingOverlay.style.display = 'none';
+                    
+                    // Afficher le message de succès
+                    document.getElementById('success-message').style.display = 'block';
+                    document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+                    clearLocalStorage();
+                    
+                    showNotification('Succès!', 'Tes produits ont été envoyés avec succès!', 'success');
+                    
+                    // Remettre le bouton normal
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 500);
+            }, 3000);
+        }
+
+        // Ajouter un avertissement avant de quitter la page
+        window.addEventListener('beforeunload', function(e) {
+            const products = collectFormData();
+            if (products.length > 0) {
+                e.preventDefault();
+                e.returnValue = 'Tu as des produits non sauvegardés. Es-tu sûre de vouloir quitter ?';
+            }
+        });
+
+        // Initialisation au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ajouter le premier produit automatiquement
             addProduct();
+            
+            // Vérifier s'il y a des données sauvegardées
+            const savedProducts = loadFromLocalStorage();
+            if (savedProducts && savedProducts.length > 0) {
+                if (confirm('Des produits non envoyés ont été trouvés. Veux-tu les restaurer ?')) {
+                    // Restaurer les produits
+                    // TODO: Implémenter la restauration complète
+                    showNotification('Restauration', 'Fonctionnalité en cours de développement', 'info');
+                } else {
+                    clearLocalStorage();
+                }
+            }
         });
     </script>
 </body>
