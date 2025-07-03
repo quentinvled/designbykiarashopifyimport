@@ -1,19 +1,16 @@
 const SHEET_ID = "1d195lIWH04e_g2glDcx7e-92DSq53J4upziHcyVzJCQ";
 const SHEET_NAME = "Produits";
-const DRIVE_FOLDER_ID = "1InXI3ztR-BqyzB-0KrrJy2npsM-7liuN"; // Dossier Drive racine
+const DRIVE_FOLDER_ID = "1InXI3ztR-BqyzB-0KrrJy2npsM-7liuN";
 
 // Fonction principale pour recevoir les données du formulaire
 function doPost(e) {
   try {
-    if (!e || !e.parameter || !e.parameter.data) {
-      throw new Error("Aucune donnée reçue dans le paramètre 'data'");
-    }
-
-    const rawData = decodeURIComponent(e.parameter.data);
+    // Récupérer les données JSON directement depuis le corps de la requête
+    const rawData = e.postData.getDataAsString();
     const data = JSON.parse(rawData);
 
-    const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME)
-      || SpreadsheetApp.openById(SHEET_ID).insertSheet(SHEET_NAME);
+    const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME) ||
+                  SpreadsheetApp.openById(SHEET_ID).insertSheet(SHEET_NAME);
 
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
@@ -24,11 +21,12 @@ function doPost(e) {
       ]);
     }
 
-    data.products.forEach(function(product) {
+    // Traiter chaque produit de manière asynchrone
+    const results = data.products.map(product => {
       const driveUrls = [];
-
+      
       if (product.images && product.images.length > 0) {
-        product.images.forEach(function(image) {
+        product.images.forEach(image => {
           if (image.src && image.src.startsWith('data:image')) {
             const driveUrl = uploadToDrive(image.src, image.name, data.shopInfo.name);
             if (driveUrl) {
@@ -38,7 +36,7 @@ function doPost(e) {
         });
       }
 
-      const row = [
+      return [
         data.timestamp,
         data.shopInfo.name,
         data.shopInfo.email,
@@ -53,9 +51,12 @@ function doPost(e) {
         product.variants.map(v => v.name + ': ' + v.values.join(', ')).join("\n"),
         driveUrls.join("\n")
       ];
-
-      sheet.appendRow(row);
     });
+
+    // Ajouter toutes les lignes en une seule opération
+    if (results.length > 0) {
+      sheet.getRange(sheet.getLastRow() + 1, 1, results.length, results[0].length).setValues(results);
+    }
 
     return ContentService.createTextOutput(JSON.stringify({
       success: true,
@@ -64,6 +65,7 @@ function doPost(e) {
     })).setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
+    console.error("Erreur dans doPost:", error.message, error.stack);
     return ContentService.createTextOutput(JSON.stringify({
       success: false,
       error: error.message,
@@ -72,50 +74,43 @@ function doPost(e) {
   }
 }
 
-// Fonction d'upload vers Google Drive avec création de sous-dossier
+// Fonction optimisée pour l'upload vers Google Drive
 function uploadToDrive(imageData, fileName, shopName) {
   try {
     const parentFolder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
-
+    
+    // Créer ou récupérer le sous-dossier de la boutique
     let subFolder;
     const folders = parentFolder.getFoldersByName(shopName);
-    subFolder = folders.hasNext() ? folders.next() : parentFolder.createFolder(shopName);
-
+    if (folders.hasNext()) {
+      subFolder = folders.next();
+    } else {
+      subFolder = parentFolder.createFolder(shopName);
+    }
+    
+    // Nettoyer le nom de fichier
     const cleanFileName = fileName.replace(/[^a-zA-Z0-9.-]/g, '_').toLowerCase();
     const timestamp = new Date().getTime();
-    const finalFileName = timestamp + '_' + cleanFileName;
-
+    const finalFileName = `${timestamp}_${cleanFileName}`;
+    
+    // Extraire les données base64
+    const base64Data = imageData.split(',')[1];
     const contentType = imageData.match(/^data:(image\/[a-zA-Z]+);base64,/)[1];
-    const base64 = imageData.split(',')[1];
-    const blob = Utilities.newBlob(Utilities.base64Decode(base64), contentType, finalFileName);
-
+    
+    // Créer le blob
+    const blob = Utilities.newBlob(
+      Utilities.base64Decode(base64Data), 
+      contentType, 
+      finalFileName
+    );
+    
+    // Upload vers Drive
     const file = subFolder.createFile(blob);
     file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-
+    
     return `https://drive.google.com/uc?export=download&id=${file.getId()}`;
   } catch (error) {
-    console.error("Erreur upload Drive:", error);
+    console.error("Erreur upload Drive:", error.message, error.stack);
     return null;
-  }
-}
-
-// Vérification GET
-function doGet() {
-  return ContentService.createTextOutput(JSON.stringify({
-    success: true,
-    message: "Le script fonctionne ! Utilisez POST pour envoyer des données.",
-    timestamp: new Date().toISOString()
-  })).setMimeType(ContentService.MimeType.JSON);
-}
-
-// Test de connexion à la Sheet
-function testAccess() {
-  try {
-    const sheet = SpreadsheetApp.openById(SHEET_ID);
-    Logger.log("Accès à la feuille OK : " + sheet.getName());
-    return true;
-  } catch (error) {
-    Logger.log("Erreur d'accès à la feuille :", error);
-    return false;
   }
 }
