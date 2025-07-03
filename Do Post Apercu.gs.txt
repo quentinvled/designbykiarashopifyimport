@@ -1,0 +1,121 @@
+const SHEET_ID = "1d195lIWH04e_g2glDcx7e-92DSq53J4upziHcyVzJCQ";
+const SHEET_NAME = "Produits";
+const DRIVE_FOLDER_ID = "1InXI3ztR-BqyzB-0KrrJy2npsM-7liuN"; // Dossier Drive racine
+
+// Fonction principale pour recevoir les données du formulaire
+function doPost(e) {
+  try {
+    if (!e || !e.parameter || !e.parameter.data) {
+      throw new Error("Aucune donnée reçue dans le paramètre 'data'");
+    }
+
+    const rawData = decodeURIComponent(e.parameter.data);
+    const data = JSON.parse(rawData);
+
+    const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME)
+      || SpreadsheetApp.openById(SHEET_ID).insertSheet(SHEET_NAME);
+
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        "Timestamp", "Boutique", "Email", 
+        "Produit", "Type", "Description", 
+        "Prix", "Stock Suivi", "Quantité Stock", 
+        "Notes", "Images", "Variantes", "URLs Images Drive"
+      ]);
+    }
+
+    data.products.forEach(function(product) {
+      const driveUrls = [];
+
+      if (product.images && product.images.length > 0) {
+        product.images.forEach(function(image) {
+          if (image.src && image.src.startsWith('data:image')) {
+            const driveUrl = uploadToDrive(image.src, image.name, data.shopInfo.name);
+            if (driveUrl) {
+              driveUrls.push(driveUrl);
+            }
+          }
+        });
+      }
+
+      const row = [
+        data.timestamp,
+        data.shopInfo.name,
+        data.shopInfo.email,
+        product.title,
+        product.productType,
+        product.description,
+        product.price,
+        product.trackStock ? "Oui" : "Non",
+        product.stock || "N/A",
+        product.notes,
+        product.images.map(img => img.name).join("\n"),
+        product.variants.map(v => v.name + ': ' + v.values.join(', ')).join("\n"),
+        driveUrls.join("\n")
+      ];
+
+      sheet.appendRow(row);
+    });
+
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      message: data.products.length + ' produit(s) enregistré(s)',
+      timestamp: new Date().toISOString()
+    })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: error.message,
+      timestamp: new Date().toISOString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Fonction d'upload vers Google Drive avec création de sous-dossier
+function uploadToDrive(imageData, fileName, shopName) {
+  try {
+    const parentFolder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+
+    let subFolder;
+    const folders = parentFolder.getFoldersByName(shopName);
+    subFolder = folders.hasNext() ? folders.next() : parentFolder.createFolder(shopName);
+
+    const cleanFileName = fileName.replace(/[^a-zA-Z0-9.-]/g, '_').toLowerCase();
+    const timestamp = new Date().getTime();
+    const finalFileName = timestamp + '_' + cleanFileName;
+
+    const contentType = imageData.match(/^data:(image\/[a-zA-Z]+);base64,/)[1];
+    const base64 = imageData.split(',')[1];
+    const blob = Utilities.newBlob(Utilities.base64Decode(base64), contentType, finalFileName);
+
+    const file = subFolder.createFile(blob);
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+    return `https://drive.google.com/uc?export=download&id=${file.getId()}`;
+  } catch (error) {
+    console.error("Erreur upload Drive:", error);
+    return null;
+  }
+}
+
+// Vérification GET
+function doGet() {
+  return ContentService.createTextOutput(JSON.stringify({
+    success: true,
+    message: "Le script fonctionne ! Utilisez POST pour envoyer des données.",
+    timestamp: new Date().toISOString()
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// Test de connexion à la Sheet
+function testAccess() {
+  try {
+    const sheet = SpreadsheetApp.openById(SHEET_ID);
+    Logger.log("Accès à la feuille OK : " + sheet.getName());
+    return true;
+  } catch (error) {
+    Logger.log("Erreur d'accès à la feuille :", error);
+    return false;
+  }
+}
